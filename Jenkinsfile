@@ -9,17 +9,17 @@ pipeline {
 		stage ('clone repo') {
 			steps {
 			sh "rm -rf /mnt/multi-branches"
-				sh "git clone https://github.com/bani125/multi-branch.git  -b 22q2"
+				sh "git clone https://github.com/bani125/multi-branch.git  -b 22q3"
 				sleep 5
 				sh "chmod  -R 777 /mnt/multi-branches/index.html"
-				sh "scp -i  '/mnt/ohio1.pem' /mnt/multi-branches/index.html  ec2-user@172.31.38.253:/mnt/slave-2/"
+				sh "scp -i  '/mnt/ohio1.pem' /mnt/multi-branches/index.html  ec2-user@172.31.38.253:/mnt/slave-3/"
 			}
 		}
-		stage ('on slave-2') {
+		stage ('on slave-3') {
 			agent {
 				node {
 					label  "qa"
-					customWorkspace  "/mnt/slave-2"
+					customWorkspace  "/mnt/slave-3"
 				}
 			}
 			steps {
